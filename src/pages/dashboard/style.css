@@ -1,0 +1,104 @@
+.headerHome{
+    border-top: 2px solid #212529;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    height: 118px;
+}
+
+.mainHome{
+    border-top: 2px solid #212529;
+    width: 100vw;
+}
+
+.h2Home{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    color: #F8F9FA;
+    margin-top: 35px;
+}
+.h4Home{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;    
+    color: #868E96;
+    margin-top: 35px;
+}
+.mainHome p{
+    
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;        
+    color: #F8F9FA;
+}
+
+.mainHome p + p{
+    
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.buttonSair{
+    width: 55.49px;
+    height: 32px;
+    left: 1050px;
+    top: 20px;
+    background: #212529;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+    border: none;
+}
+
+.divNavBar{
+    height: 72px;
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+    
+
+}
+
+.divNavBar img{
+    width: 138.53px;
+    height: 34.63px;
+    margin-top: 14px
+}
+
+
+@media only screen and (max-width: 600px) {
+    .mainHome{
+        display: none;
+    }
+      
+    .headerHome{
+        border-top: 2px solid #212529;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        height: 118px;
+        border-bottom: 2px solid #212529;
+        
+    }
+    .h2Home{
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 28px;
+        color: #F8F9FA;
+        margin-top: 13px;
+        margin-left: 30px;
+    }
+    .h4Home{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;    
+        color: #868E96;
+        margin-top: -18px;
+        margin-left: 30px;
+    }
+     }

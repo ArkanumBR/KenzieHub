@@ -1,0 +1,76 @@
+.divRegister{
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 42px 22px;
+    gap: 22px;
+    width: 370px;
+    height: 891.19px;
+    left: 535px;
+    top: 127.81px;
+    color: white;
+    background: #212529;
+    box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    margin-bottom: 60px;
+}
+.h2Register{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;    
+    color: #F8F9FA;
+    margin-top: -15px;
+    
+}
+
+.h4Register{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    color: #868E96;
+    margin-top: -15px;
+    margin-top: -9px;
+    margin-bottom: -10px
+}
+.divImgBTN{
+    margin-top: 50px;
+    margin-bottom: -10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttonVoltar{
+
+    align-items: center;
+    padding: 0px 16.2426px;
+    gap: 10.15px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 28px;
+    border: none;
+    
+    
+    text-align: center; 
+   
+    
+    color: #F8F9FA;
+
+    width: 67.49px;
+    height: 40.11px;
+    left: 837px;
+    top: 48px;
+    margin-top: 10px;
+
+    background: #212529;
+    border-radius: 4px;
+
+    cursor: pointer;
+
+}
+
+.errors{
+    font-size: 12px;
+    color: red;
+}

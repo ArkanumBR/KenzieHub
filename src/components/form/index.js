@@ -76,6 +76,17 @@ const Form = styled.form`
     ::placeholder { 
         color: #868E96;
     }
+    @media only screen and (max-width: 600px){
+        input{
+            width: 60vw
+        }
+        button{
+            width: 60vw
+        }
+        select{
+            width: 60vw
+        }
+    }
 
 `
 

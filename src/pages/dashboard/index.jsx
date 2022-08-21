@@ -1,20 +1,26 @@
 import './style.css';
 import logo from "../../images/Logo.jpg";
-import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { motion } from 'framer-motion';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/auth';
+import Techs from '../../components/techs';
+import Modal from '../../components/modal';
 
-const Dashboard = ({ setUserLogged }) => {
 
-const navigate = useNavigate();
+const Dashboard = () => {
 
-function clearAll(){
-        window.localStorage.clear();     
-        setUserLogged(false);
-        toast.success("Logout realizado!")   
-        navigate("/");
-    }
+  
+const { clearAll, techs, deleteTech, openModal, setOpenModal } = useContext(AuthContext);
+
+
+
     return (
-        <>
+        <motion.div
+        initial={{ scaleY: 0}}
+        animate={{ scaleY: 1}}
+        exit={{ scaleY: 0}}
+        transition={{duration: 1}}>
+
         <div className='divNavBar'>
             <img src={logo} alt="logo" />
             <button className='buttonSair' onClick={clearAll}>Sair</button>
@@ -24,10 +30,28 @@ function clearAll(){
             <h4 className='h4Home'> {localStorage.getItem("module")}</h4>
         </header>
         <main className='mainHome'>
-            <p>Que pena! Estamos em desenvolvimento.</p>
-            <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+            <div className='divTechs'>
+                <span>Tecnologias</span>
+                <button className='buttonAddTechs' onClick={() => setOpenModal(!openModal)}>+</button>
+                {openModal && (
+                    <Modal/>
+                    
+                 )}
+            </div>
+            <div className='listagemTechs'>
+                {techs.map((e) => {
+                return (
+                    <Techs
+                    status={e.status}
+                    title={e.title}
+                    id={e.id}
+                    deleteTech={deleteTech} 
+                    key={e.created_at}                  
+                    />
+                )})}  
+            </div>
         </main>
-        </>
+        </motion.div>
     )
 }
 

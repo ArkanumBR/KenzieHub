@@ -1,56 +1,29 @@
-import { useForm } from "react-hook-form";
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+
 import Form from "../../components/form";
 import logo from "../../images/Logo.jpg"
-import style from "./style.css";
-import axios from 'axios';
+import "./style.css";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { motion } from 'framer-motion';
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth";
 
 
 
-const Login = ({ userLogged, setUserLogged }) => {
+const Login = () => {
     
 
     const navigate = useNavigate();
+    const {handleSubmit, handleForm, register, errors} = useContext(AuthContext);
    
 
-    const schema = yup.object({
-        email: yup.string().email("Deve ser um e-mail válido.").required("Campo obrigatório."),
-        password: yup.string().min(8, "Senha tem pelo menos 8 caracteres.").required("Campo obrigatório."),
-        
-    });
-    
-    const { register, handleSubmit, formState: { errors }, setError } = useForm({
-        resolver: yupResolver(schema),
-    });
-
-    
-        
-   function handleForm(user){
-     axios.post("https://kenziehub.herokuapp.com/sessions", {...user}).then((response) =>{
-        console.log(response);     
-        window.localStorage.clear();       
-        window.localStorage.setItem("authToken", response.data.token);
-        window.localStorage.setItem("name", response.data.user.name);
-        window.localStorage.setItem("module", response.data.user.course_module);
-        setUserLogged(true);
-        toast.success("Login feito com sucesso!")
-        navigate("/dashboard")
-
-
-
-
-    })
-        .catch((error) =>
-        {   alert("Dados incorretos")
-            setError("password", {message: console.log(error.response.data)})
-        }
-        )
-   }
+   
 
     return (
+        <motion.div
+        initial={{ scaleY: 0}}
+        animate={{ scaleY: 1}}
+        exit={{ scaleY: 0}}
+        transition={{duration: 1}}>
         <div className="divMainLogin">
             <img src={logo} alt="logo" className="imgLogin"/>
 
@@ -76,6 +49,7 @@ const Login = ({ userLogged, setUserLogged }) => {
 
             </div>
         </div>
+        </motion.div>
     )
 }
 

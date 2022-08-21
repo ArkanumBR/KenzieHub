@@ -1,0 +1,52 @@
+.divDasTechs{
+display: flex;
+justify-content: space-between;
+Width: 732px;
+Height: 49px;
+margin: 22px;
+background-color: #121214;
+
+}
+.divDasTechs:hover{
+    background: #343B41;
+    border-radius: 4px;
+}
+.techName{
+    font-weight: 700;
+    font-size: 14.21px;
+    line-height: 22px;
+    margin-top: 12px;
+    margin-left: 25px;
+}
+.divNivelTrash{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 12px;
+    margin-right: 25px;
+    
+}
+.divNivelTrash span{
+    margin-left: 15px;
+    font-weight: 400;
+    font-size: 12.182px;
+    line-height: 22px;
+    text-align: right;
+    color: #868E96;
+}
+.divNivelTrash span + span{
+    font-weight: 900;
+}
+.trash{
+    font-size: 15px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    .divDasTechs{
+        
+        Width: auto;
+      
+        
+        } 
+}

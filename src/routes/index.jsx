@@ -1,28 +1,28 @@
 import Login from "../pages/login/login";
 import Dashboard from "../pages/dashboard";
 import Register from "../pages/register/register";
-const { Routes, Route, Navigate } = require("react-router-dom");
+import { AnimatePresence } from "framer-motion";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 
-const RoutesMain = ({ userLogged, setUserLogged }) => (
-    <Routes>
+const RoutesMain = ({ location }) => (
+    
+    
+    <AnimatePresence wait>
+    <Routes>        
+        <Route path="/" element={<Login/>} location={location} key={location.pathname} />
         
-        <Route path="/" element={<Login userLogged={userLogged} setUserLogged={setUserLogged}/>} />
         
-        {userLogged === true? 
-        <>
-        <Route path="/dashboard" element={<Dashboard setUserLogged={setUserLogged}/>}/> 
-        </>
-        :
-        <>
-            <Route path="/register" element={<Register/>} />
-            <Route path="*" element={<Navigate to={"/"}/>}/>    
-        </>
-         }       
         
-
+        <Route path="/dashboard" element={<Dashboard />} location={location} key={location.pathname}/> 
+       
+            <Route path="/register" element={<Register/>} location={location} key={location.pathname}/>
+            <Route path="*" element={<Navigate to={"/"}/>} location={location} key={location.pathname}/>    
         
+             
+               
     </Routes>
+    </AnimatePresence>
 )
 
 export default RoutesMain

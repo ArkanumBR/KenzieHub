@@ -9,6 +9,7 @@
 .mainHome{
     border-top: 2px solid #212529;
     width: 100vw;
+    
 }
 
 .h2Home{
@@ -70,11 +71,42 @@
     margin-top: 14px
 }
 
+.divTechs{
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+    margin-top: 15px;
 
+}
+
+.buttonAddTechs{
+    background: #212529;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 33px;
+    height: 32px;
+    font-weight: 900;
+}
+
+.listagemTechs{
+    margin-top: 20px;
+    background: #212529;
+    border-radius: 4px;
+    height: auto;
+    width: 780px;
+}
 @media only screen and (max-width: 600px) {
-    .mainHome{
-        display: none;
+    .listagemTechs{
+        margin-top: 20px;
+        background: #212529;
+        border-radius: 4px;
+        height: auto;
+        width: 95vw;
+        
     }
+  
       
     .headerHome{
         border-top: 2px solid #212529;

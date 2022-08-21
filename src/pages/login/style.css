@@ -63,3 +63,19 @@ border: 1.2182px solid #868E96;
 border-radius: 4px;
         
 }
+.buttonCadastre:hover{
+    background: rgb(65, 65, 65);
+    border: none;
+}
+@media only screen and (max-width: 600px) {
+    .divLogin{
+       
+        width: 70vw;
+       
+    }
+ 
+    .buttonCadastre{
+        width: 60vw
+    }
+
+}

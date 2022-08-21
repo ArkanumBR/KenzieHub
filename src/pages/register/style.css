@@ -74,3 +74,12 @@
     font-size: 12px;
     color: red;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .divRegister{
+       
+        width: 70vw;
+       
+    }
+}

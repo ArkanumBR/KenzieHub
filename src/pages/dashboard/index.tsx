@@ -1,17 +1,38 @@
 import './style.css';
-import logo from "../../images/Logo.jpg";
+import  logo  from "../../images/Logo.jpg";
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/auth';
 import Techs from '../../components/techs';
 import Modal from '../../components/modal';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import api from '../../services/api';
+
 
 
 const Dashboard = () => {
 
+const navigate = useNavigate();  
   
-const { clearAll, techs, deleteTech, openModal, setOpenModal } = useContext(AuthContext);
+const { techs, openModal, setOpenModal, setUserLogged} = useContext(AuthContext);
 
+const deleteTech = (id : string) => {
+    
+    api.delete(`users/techs/${id}`, {
+     headers: { Authorization : `Bearer ${localStorage.getItem("authToken")}`}
+    }).then((response) => {
+     toast.success("Tech excluída com sucesso!") 
+     return response.data;
+    }).catch((error) => console.log(error))
+ }
+
+const clearAll = () => {
+    window.localStorage.clear();     
+    setUserLogged(false);
+    toast.success("Logout realizado!")   
+    navigate("/");
+}
 
 
     return (
@@ -46,7 +67,7 @@ const { clearAll, techs, deleteTech, openModal, setOpenModal } = useContext(Auth
                     title={e.title}
                     id={e.id}
                     deleteTech={deleteTech} 
-                    key={e.created_at}                  
+                    key={e.id}                  
                     />
                 )})}  
             </div>

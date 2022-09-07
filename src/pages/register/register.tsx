@@ -3,18 +3,65 @@ import Form from "../../components/form";
 import logo from "../../images/Logo.jpg";
 import './style.css';
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { RegContext } from "../../contexts/register";
 import { motion } from 'framer-motion';
+import { useForm } from "react-hook-form";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-
+interface IUser{
+    email?: string,
+    password?: string,
+    name?: string,
+    bio?: string,
+    contact?: string,
+    course_module?: string,
+    title?: string;
+    status?: string;
+    confirmPass?: string;
+    }
 const Register = () => {
+     
 
-    const navigate = useNavigate();
-    const {handleSubmit, registerUser, register, errors} = useContext(RegContext);
+    const navigate = useNavigate(); 
 
-
-   
+    const schema = yup.object({
+        name: yup.string().required("Campo necessário."),
+        email: yup.string().email("Deve ser um e-mail válido").required("Campo necessário."),
+        password: yup.string().matches(
+            // eslint-disable-next-line no-useless-escape
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+            "Necessário 8 caracteres, uma letra maiúscula, uma letra minúscula, um numero e um caracter especial"
+          ).required("Campo necessário."),
+        confirmPass: yup.string().oneOf([yup.ref('password')], "Senha não confere.").required("Campo necessário."),
+        bio: yup.string().required("Campo necessário."),
+        contact: yup.string()
+        .required("Campo necessário.")
+        .matches(/^[0-9]+$/, "Somente números")
+        .min(10, 'Precisa ser um telefone válido no formato, como por exemplo: 38998976570')
+        .max(11, 'Precisa ser um telefone válido no formato, como por exemplo: 38998976570'),
+        course_module: yup.string().required("Campo necessário."),
+  
+    });
+    
+    const { register, handleSubmit, formState: { errors } } = useForm<IUser>({
+        resolver: yupResolver(schema),
+    });
+    
+    
+   async function registerUser(data : IUser){
+    await axios.post("https://kenziehub.herokuapp.com/users", data)
+   .then((response) => {
+    console.log(response.data)
+    toast.success("Cadastro feito com sucesso!")
+    navigate("/")
+  })
+   .catch((error) => {
+    toast.error("Email já cadastrado!")
+    console.log(error)}); 
+   } 
+        
 
     return (
         <motion.div
@@ -56,7 +103,7 @@ const Register = () => {
                 <p className="errors">{errors.contact?.message}</p>
 
                 <label htmlFor="course_module">Selecionar Módulo</label>
-                <select name="" id="course_module" {...register('course_module')}>
+                <select id="course_module" {...register('course_module')}>
                     <option>M1 - HTML/CSS</option>
                     <option>M2 - JavaScript</option>
                     <option>M3 - React</option>

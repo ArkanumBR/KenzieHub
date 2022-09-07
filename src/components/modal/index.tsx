@@ -3,19 +3,41 @@ import { MdClose } from 'react-icons/md'
 import { useContext } from "react"
 import { AuthContext } from "../../contexts/auth";
 import { useForm } from "react-hook-form";
+import api from "../../services/api";
+import { toast } from "react-toastify";
 
 
 
-
-
+interface IUser{
+    email?: string,
+    password?: string,
+    name?: string,
+    bio?: string,
+    contact?: string,
+    course_module?: string,
+    title?: string;
+    status?: string;
+    id?: string;
+}
 const Modal = () => {
 
-    const { addNewTech, setOpenModal } = useContext(AuthContext);
+    const { setOpenModal } = useContext(AuthContext);
+    
+    const {register, handleSubmit} = useForm<IUser>();
 
-    const {register, handleSubmit} = useForm();
+    async function addNewTech(data : IUser){
+        await api.post("users/techs", data, {
+          headers: { Authorization : `Bearer ${localStorage.getItem("authToken")}`}
+         })
+        .then((response) => {
+          toast.success("Tech cadastrada com sucesso!");
+          setOpenModal(false);
+        }).catch((error) => {
+          toast.error("Tech não cadastrada =(");
+        })
+      }
     
     return (
-
         
         <Container onSubmit={handleSubmit(addNewTech)}>
             
